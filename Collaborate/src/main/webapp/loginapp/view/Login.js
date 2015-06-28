@@ -45,7 +45,8 @@ Ext.define('LoginApp.view.Login', {
 		width : 550,
 		layout : {
 			type : 'hbox',
-			pack : 'center'
+			pack : 'center',
+			padding: '100 0 0 0'
 		},
 		items : [ {
 			xtype : 'form',
