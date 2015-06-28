@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -85,8 +86,9 @@ public class PropertiesUtil {
 	public static Properties getProperties(File file) {
 
 		Properties p = new Properties();
+		
 		try {
-			p.load(new FileInputStream(file));
+			p.load(new FileInputStream(file));			
 			loadPropertiesMap(file, p);
 			return p;
 		} catch (IOException ex) {

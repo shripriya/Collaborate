@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.slabs.collaborate.core.db.DatabaseHelper;
+import com.slabs.collaborate.utilities.CollaborateUtilityException;
+import com.slabs.collaborate.utilities.EmailUtil;
 import com.slabs.collaborate.utilities.FileUtil;
 import com.slabs.collaborate.utilities.PropertiesUtil;
 import com.slabs.collaborate.utilities.ResourceUtil;
@@ -43,11 +45,14 @@ public class CollaborateServer {
 			L.info("ResourceUtil initialization complete....");
 
 			L.info("Initializing PropertiesUtil....");
-			PropertiesUtil.loadProperties(ResourceUtil.getPropertiesDirectory(), ".properties");
+			PropertiesUtil.loadProperties(ResourceUtil.getResourceDirectory("properties", false), ".properties");
 			L.info("PropertiesUtil initialization is complete....");
 
 			Map<String, Properties> map = PropertiesUtil.getPropertiesMap();
 			Properties p = map.get("collaborate.properties");
+
+			L.info("Initializing EmailUtil....");
+			EmailUtil.initialize(map.get("email.properties"), p.getProperty("app.name"));
 
 			L.info("Looking for Collaborate file upload directory....");
 			FileUtil.isDirectoryAvailable(p.getProperty("collaborate.userrepository"), true);
@@ -58,6 +63,8 @@ public class CollaborateServer {
 			L.info("Collaborate Server initialized....");
 		} catch (IOException ex) {
 			L.error("Exception: {}", ex);
+			System.exit(1);
+		} catch (CollaborateUtilityException e) {
 			System.exit(1);
 		}
 	}
