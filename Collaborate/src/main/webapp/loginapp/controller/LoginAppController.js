@@ -47,23 +47,7 @@ Ext.define('LoginApp.controller.LoginAppController', {
 						loginBtn.fireEvent('click', loginBtn);
 					}
 				}
-			},
-			'[itemId=registerBtn]' : {
-				click : function(button) {
-
-					var loginView = button.up('[itemId=loginView]');
-					loginView.loginForm.setVisible(false);
-					loginView.registerForm.setVisible(true);
-				}
-			},
-			'[itemId=closeBtnField]' : {
-				click : function(button) {
-
-					var loginView = button.up('[itemId=loginView]');
-					loginView.loginForm.setVisible(true);
-					loginView.registerForm.setVisible(false);
-				}
-			},
+			},						
 			'[itemId=registerBtnField]' : {
 				click : function(button) {
 

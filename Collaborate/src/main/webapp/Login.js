@@ -7,7 +7,7 @@ Ext.application({
 	appFolder : "loginapp",
 	controllers : [ 'LoginAppController' ],
 	launch : function() {
-		this.mainView = Ext.create("Ext.container.Container", {
+		this.mainView = Ext.create("Ext.container.Viewport", {
 			renderTo : 'loginPanel',
 			layout : 'fit',
 			itemId : 'mainView',
@@ -15,7 +15,7 @@ Ext.application({
 				xtype : 'container',
 				itemId : 'mainContainer',
 				layout : {
-					type : 'anchor'
+					type : 'fit'
 				},
 				items : [ {
 					xtype : 'login'

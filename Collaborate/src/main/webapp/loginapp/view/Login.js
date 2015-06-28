@@ -30,22 +30,26 @@ Ext.apply(Ext.form.field.VTypes, {
 });
 
 Ext.define('LoginApp.view.Login', {
-	extend : 'Ext.container.Container',
+	extend : 'Ext.panel.Panel',
 	xtype : 'login',
-	itemId : 'loginView',
+	itemId : 'loginView',	
 	layout : {
-		type : 'hbox'
-	},
+		type : 'accordion',
+		titleCollapse: false,
+        animate: true,
+        activeOnTop: true
+	},		
 	items : [ {
-		xtype : 'container',
-		padding : '300 40 20 20',
+		title: 'Login',
+		xtype : 'panel',		
 		width : 550,
 		layout : {
-			type : 'hbox'
+			type : 'hbox',
+			pack : 'center'
 		},
 		items : [ {
 			xtype : 'form',
-			height : 180,
+			height : 180,			
 			width : 400,
 			title : 'Collaborate Login',
 			method : 'POST',
@@ -83,16 +87,14 @@ Ext.define('LoginApp.view.Login', {
 				}
 			} ],
 			buttons : [ {
-				text : 'Register',
-				itemId : 'registerBtn'
-			}, {
 				text : 'Login',
 				itemId : 'loginBtn'
 			} ]
 
 		} ]
 	}, {
-		xtype : 'container',
+		title: 'Register',
+		xtype : 'panel',
 		flex : 1.25,
 		layout : {
 			type : 'hbox',
@@ -104,8 +106,7 @@ Ext.define('LoginApp.view.Login', {
 			title : 'Register',
 			itemId : 'registerForm',
 			method : 'POST',
-			url : URL.serviceURL + 'RegistrationService',
-			hidden : true,
+			url : URL.serviceURL + 'RegistrationService',			
 			layout : {
 				type : 'vbox',
 				padding : '50 20 30 20'
@@ -243,10 +244,7 @@ Ext.define('LoginApp.view.Login', {
 			buttons : [ {
 				text : 'Register',
 				itemId : 'registerBtnField'
-			}, {
-				text : 'Close',
-				itemId : 'closeBtnField'
-			} ]
+			}]
 		} ]
 	} ]
 });
