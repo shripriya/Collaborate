@@ -1,0 +1,119 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Oct 24, 2013, 1:08:35 AM
+    Author     : Shyam
+*/
+.app-header {
+	color: #FFFFFF;
+	font-size: 22px;
+	font-family: Cambria;
+	padding: 8px 15px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.app-msg {
+	background: #D1DDEF;
+	border: 1px solid #ACC3E4;
+	padding: 3px 15px;
+	font-weight: bold;
+	font-size: 13px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.x-btn {
+	border-radius: 0 0 0 0;
+	width: 100px;
+	height: 25px;
+}
+
+.x-btn .x-btn-inner {
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Cambria;
+	color: #FFFFFF;
+}
+
+.x-over .x-btn-over .x-btn-default-small-over {
+
+}
+
+.x-fieldset {
+	border: 1px thin #000000;
+	padding: 0 10px;
+	margin: 0 0 10px;
+}
+
+.x-fieldset-header-text {
+	font: normal 14px/16px Cambria;
+	color: #000000;
+	padding: 1px 0;
+	font-style: normal;
+}
+
+.x-form-item-label {
+	color: black;
+	font: normal 14px/22px Cambria;
+}
+
+.x-form-display-field {
+	font: normal 14px/22px Cambria;
+	color: black;
+	margin-top: 1px;
+}
+
+.x-btn-default-small { //
+	background-color: #0074FC;
+	background-image: none;
+}
+
+.x-btn-default-small-pressed {
+	border-color: #008EF9;
+	background-color: #0074FC;
+	background-image: none;
+}
+
+.collaborateToolsIcon {
+	background-image: url(../images/collaborate.ico) !important;
+}
+
+.profileIcon {
+	background-image: url(../images/profile.ico) !important;
+}
+
+.logoutIcon {
+	background-image: url(../images/logout.ico) !important;
+}
+
+.downloadIcon {
+	background-image: url(../images/download.ico) !important;
+}
+
+.folderIcon {
+	background-image: url(../images/folder.ico) !important;
+}
+
+.fileIcon {
+	background-image: url(../images/file.ico) !important;
+}
+
+.uploadIcon {
+	background-image: url(../images/upload.ico) !important;
+}
+
+.deleteIcon {
+	background-image: url(../images/delete.ico) !important;
+}
+
+.shareIcon {
+	background-image: url(../images/share.ico) !important;
+}
+
+.removeIcon {
+	background-image: url(../images/remove.ico) !important;
+}

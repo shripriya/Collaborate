@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="com/slabs/collaborate/core/pojo"
+	xmlns:tns="com/slabs/collaborate/core/pojo" elementFormDefault="qualified">
+
+	<complexType name="Directory">
+		<sequence>
+			<element name="name" type="string" maxOccurs="1" />
+			<element name="size" type="string" maxOccurs="1" />
+			<element name="iconCls" type="string" maxOccurs="1" />
+			<element name="expanded" type="boolean" maxOccurs="1" />
+			<element name="leaf" type="boolean" maxOccurs="1" />
+			<element name="path" type="string" maxOccurs="1" />
+			<element name="children" type="tns:Directory" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+</schema>

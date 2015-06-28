@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>Collaborate</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:com/slabs/collaborate/spring/config/collaborate-spring-config.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+    	<description>
+    	</description>
+    	<display-name>CollaborateServlet</display-name>
+    	<servlet-name>CollaborateServlet</servlet-name>
+    	<servlet-class>com.slabs.collaborate.servlet.CollaborateServlet</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Collaborate</servlet-name>
+        <url-pattern>/collaborateserver/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>
+            com.slabs.collaborate.session.filter.SessionFilter
+        </filter-class>
+    </filter>
+
+
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/CollaborateDashBoard.jsp</url-pattern>        
+        <url-pattern>/collaborateserver/*</url-pattern>        
+    </filter-mapping>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:com/slabs/collaborate/spring/config/collaborate-spring-config.xml</param-value>
+ 	</context-param>
+
+    <welcome-file-list>
+        <welcome-file>/Login.html</welcome-file>
+        <welcome-file>/Login.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
