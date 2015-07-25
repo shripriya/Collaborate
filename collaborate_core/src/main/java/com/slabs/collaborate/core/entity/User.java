@@ -18,12 +18,14 @@ public class User implements Serializable {
 
 	private String mobile;
 
+	private String verified;
+
 	public User() {
 
 		super();
 	}
 
-	public User(String userName, String password, String firstName, String lastName, String sex, String email, String mobile) {
+	public User(String userName, String password, String firstName, String lastName, String sex, String email, String mobile, String verified) {
 
 		super();
 		this.userName = userName;
@@ -33,6 +35,7 @@ public class User implements Serializable {
 		this.sex = sex;
 		this.email = email;
 		this.mobile = mobile;
+		this.verified = verified;
 	}
 
 	public String getUserName() {
@@ -105,10 +108,21 @@ public class User implements Serializable {
 		this.mobile = mobile;
 	}
 
+	public String getVerified() {
+
+		return verified;
+	}
+
+	public void setVerified(String verified) {
+
+		this.verified = verified;
+	}
+
 	@Override
 	public String toString() {
 
-		return "User [userName=" + userName + ", passWord=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", sex=" + sex + ", email=" + email + ", mobile=" + mobile + "]";
+		return "User [userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", sex=" + sex + ", email=" + email + ", mobile=" + mobile
+				+ ", verified=" + verified + "]";
 	}
 
 }
