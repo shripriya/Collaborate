@@ -17,7 +17,23 @@ import com.slabs.collaborate.core.entity.User;
  */
 public interface SQLMapper {
 
+	/**
+	 * This method will create a user entry in the USERTABLE when the user
+	 * register
+	 * 
+	 * @param user
+	 * @throws Exception
+	 */
 	public void createUser(User user) throws Exception;
+
+	/**
+	 * This method will create am entry in USER_ACTIVATION_TABLE when the user
+	 * register.
+	 * 
+	 * @param paramsMap
+	 * @throws Exception
+	 */
+	public void createUserActivationEnrty(Map<String, String> paramsMap) throws Exception;
 
 	/**
 	 * This method retrives the user details and it requires one parameter in

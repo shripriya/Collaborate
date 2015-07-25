@@ -12,6 +12,11 @@
 		#{mobile},
 		#{sex}, #{userName}, #{password}, #{verified})
 	</insert>
+	
+	<insert id="createUserActivationEnrty" parameterType="map">
+		insert into COLLABORATE.USER_ACTIVATION_TABLE(USERNAME, REG_EMAIL, CODE, VERIFIED, CRE_DATE)
+		values(#{userName}, #{email}, 'N', SYSDATE)
+	</insert>
 
 	<select id="retrieveUser" parameterType="map"
 		resultType="com.slabs.collaborate.core.entity.User">
