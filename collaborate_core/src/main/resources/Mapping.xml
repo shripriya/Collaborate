@@ -8,14 +8,17 @@
 		insert into
 		COLLABORATE.USER_TABLE(FIRSTNAME, LASTNAME, EMAIL, MOBILE, SEX,
 		USERNAME, PASSWORD, VERIFIED)
-		values(#{firstName}, #{lastName}, #{email},
+		values(#{firstName}, #{lastName},
+		#{email},
 		#{mobile},
 		#{sex}, #{userName}, #{password}, #{verified})
 	</insert>
-	
+
 	<insert id="createUserActivationEnrty" parameterType="map">
-		insert into COLLABORATE.USER_ACTIVATION_TABLE(USERNAME, REG_EMAIL, CODE, VERIFIED, CRE_DATE)
-		values(#{userName}, #{email}, 'N', SYSDATE)
+		insert into
+		COLLABORATE.USER_ACTIVATION_TABLE(USERNAME, REG_EMAIL, CODE, VERIFIED,
+		CRE_DATE)
+		values(#{userName}, #{email},#{vCode}, 'N', SYSDATE)
 	</insert>
 
 	<select id="retrieveUser" parameterType="map"
