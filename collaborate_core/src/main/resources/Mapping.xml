@@ -18,7 +18,7 @@
 		insert into
 		COLLABORATE.USER_ACTIVATION_TABLE(USERNAME, REG_EMAIL, CODE, VERIFIED,
 		CRE_DATE)
-		values(#{userName}, #{email},#{vCode}, 'N', SYSDATE)
+		values(#{userName}, #{email}, #{vCode}, 'N', SYSDATE)
 	</insert>
 
 	<select id="retrieveUser" parameterType="map"

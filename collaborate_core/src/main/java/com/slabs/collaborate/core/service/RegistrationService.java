@@ -25,6 +25,9 @@ public class RegistrationService implements CollaborateService {
 	@Autowired
 	private RetrieveUserService userService;
 
+	@Autowired
+	private EmailService emailService;
+
 	public Map<String, Object> process(Map<String, String> paramsMap) {
 
 		Map<String, Object> outputMap = new HashMap<String, Object>();
@@ -51,11 +54,15 @@ public class RegistrationService implements CollaborateService {
 				if ((boolean) repoServiceOutput.get("success")) {
 
 					User u = new User(paramsMap.get("userName"), paramsMap.get("password"), paramsMap.get("firstName"), paramsMap.get("lastName"), paramsMap.get("sex"), paramsMap.get("email"),
-							paramsMap.get("mobile"));
+							paramsMap.get("mobile"), "N");
 					mapper.createUser(u);
 					session.commit();
+
+					sendVerificationMail(paramsMap);
+
 					outputMap.put("status_msg", "Registration Complete");
 					outputMap.put("status_code", "00");
+
 				} else {
 					populateFailureResponse(outputMap, "Error creating repository for user. Please contact customer support");
 				}
@@ -85,4 +92,11 @@ public class RegistrationService implements CollaborateService {
 		outputMap.put("status_msg", "Registration Failed. " + msg);
 		outputMap.put("status_code", "99");
 	}
+
+	private void sendVerificationMail(Map<String, String> paramsMap) {
+
+		paramsMap.put("emailType", "VERIFY_EMAIL");
+		emailService.process(paramsMap);
+	}
+
 }

@@ -11,6 +11,7 @@ import com.slabs.collaborate.core.db.DatabaseHelper;
 import com.slabs.collaborate.utilities.CollaborateUtilityException;
 import com.slabs.collaborate.utilities.EmailUtil;
 import com.slabs.collaborate.utilities.FileUtil;
+import com.slabs.collaborate.utilities.MarkerEngine;
 import com.slabs.collaborate.utilities.PropertiesUtil;
 import com.slabs.collaborate.utilities.ResourceUtil;
 
@@ -54,6 +55,9 @@ public class CollaborateServer {
 			L.info("Initializing EmailUtil....");
 			EmailUtil.initialize(map.get("email.properties"), p.getProperty("app.name"));
 
+			L.info("Initializing Marker Engine....");
+			MarkerEngine.initialize();
+			
 			L.info("Looking for Collaborate file upload directory....");
 			FileUtil.isDirectoryAvailable(p.getProperty("collaborate.userrepository"), true);
 
