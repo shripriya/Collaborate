@@ -5,60 +5,91 @@
 <mapper namespace="com.slabs.collaborate.core.db.SQLMapper">
 
 	<insert id="createUser" parameterType="com.slabs.collaborate.core.entity.User">
-		insert into COLLABORATE.USER_TABLE(FIRSTNAME, LASTNAME, EMAIL, MOBILE, SEX, USERNAME, PASSWORD)
-		values(#{firstName}, #{lastName}, #{email}, #{mobile},
-		#{sex}, #{userName}, #{password})
+		insert into
+		COLLABORATE.USER_TABLE(FIRSTNAME, LASTNAME, EMAIL, MOBILE, SEX,
+		USERNAME, PASSWORD, VERIFIED)
+		values(#{firstName}, #{lastName}, #{email},
+		#{mobile},
+		#{sex}, #{userName}, #{password}, #{verified})
 	</insert>
-		
-	<select id="retrieveUser" parameterType="map" resultType="com.slabs.collaborate.core.entity.User">
-		select * from COLLABORATE.USER_TABLE where userName= #{userName}
+
+	<select id="retrieveUser" parameterType="map"
+		resultType="com.slabs.collaborate.core.entity.User">
+		select * from COLLABORATE.USER_TABLE where userName=
+		#{userName}
 	</select>
 
 	<select id="retrieveAllUsers" resultType="com.slabs.collaborate.core.entity.User">
-		select * from COLLABORATE.USER_TABLE
+		select * from
+		COLLABORATE.USER_TABLE
 	</select>
 
-	<select id="retrieveOtherUsers" parameterType="string" resultType="com.slabs.collaborate.core.entity.User">
-		select * from COLLABORATE.USER_TABLE where userName != #{userName}
+	<select id="retrieveOtherUsers" parameterType="string"
+		resultType="com.slabs.collaborate.core.entity.User">
+		select * from COLLABORATE.USER_TABLE where userName !=
+		#{userName}
 	</select>
 
-	<select id="retrieveSharedFiles" parameterType="string" resultType="com.slabs.collaborate.core.entity.SharedFiles">
-		select SF.*, SFM.SHAREDWITH, U.LASTNAME AS OWNERLNAME, U.FIRSTNAME AS OWNERFNAME from COLLABORATE.SHARED_FILES SF,
+	<select id="retrieveSharedFiles" parameterType="string"
+		resultType="com.slabs.collaborate.core.entity.SharedFiles">
+		select SF.*, SFM.SHAREDWITH, U.LASTNAME AS OWNERLNAME,
+		U.FIRSTNAME AS OWNERFNAME from COLLABORATE.SHARED_FILES SF,
 		COLLABORATE.SHARE_FILES_MAPPING SFM,
-		COLLABORATE.USER_TABLE U where SFM.SHAREDWITH= #{userName} AND SFM.FILENAME =
-		SF.FILENAME AND SF.SHAREDBY = U.USERNAME
+		COLLABORATE.USER_TABLE U where
+		SFM.SHAREDWITH= #{userName} AND SFM.FILENAME =
+		SF.FILENAME AND
+		SF.SHAREDBY = U.USERNAME
 	</select>
-	
+
 	<insert id="shareFile" parameterType="map">
-		insert into COLLABORATE.SHARED_FILES(FILENAME,FILEPATH,SHAREDBY) values(#{fileName}, #{filePath}, #{userName})
+		insert into
+		COLLABORATE.SHARED_FILES(FILENAME,FILEPATH,SHAREDBY)
+		values(#{fileName}, #{filePath}, #{userName})
 	</insert>
 
 	<delete id="removeFileSharing" parameterType="map">
-		delete from COLLABORATE.SHARED_FILES where fileName=#{fileName} and sharedBy=#{userName}
+		delete from
+		COLLABORATE.SHARED_FILES where fileName=#{fileName} and
+		sharedBy=#{userName}
 	</delete>
 
 	<insert id="updateSharedFileMapping" parameterType="map">
-		insert into COLLABORATE.SHARE_FILES_MAPPING(SHAREDWITH,SHAREDUSER,FILENAME) values(#{sharedWith},#{userName},#{fileName})
+		insert into
+		COLLABORATE.SHARE_FILES_MAPPING(SHAREDWITH,SHAREDUSER,FILENAME)
+		values(#{sharedWith},#{userName},#{fileName})
 	</insert>
 
-	<select id="getShareDetailsByFileName" parameterType="map" resultType="com.slabs.collaborate.core.entity.SharedFiles">
-		select SF.FILEPATH,SF.SHAREDBY, SFM.*, U.LASTNAME AS OWNERLNAME, U.FIRSTNAME AS OWNERFNAME from COLLABORATE.SHARE_FILES_MAPPING SFM,COLLABORATE.SHARED_FILES SF,
+	<select id="getShareDetailsByFileName" parameterType="map"
+		resultType="com.slabs.collaborate.core.entity.SharedFiles">
+		select SF.FILEPATH,SF.SHAREDBY, SFM.*, U.LASTNAME AS
+		OWNERLNAME, U.FIRSTNAME AS OWNERFNAME from
+		COLLABORATE.SHARE_FILES_MAPPING SFM,COLLABORATE.SHARED_FILES SF,
 		COLLABORATE.USER_TABLE U where
-		SFM.SHAREDUSER=#{userName} AND SFM.SHAREDUSER = SF.SHAREDBY AND SFM.SHAREDUSER = U.USERNAME AND SFM.FILENAME = #{fileName} AND SF.FILENAME =SFM.FILENAME
+		SFM.SHAREDUSER=#{userName} AND
+		SFM.SHAREDUSER = SF.SHAREDBY AND SFM.SHAREDUSER = U.USERNAME AND
+		SFM.FILENAME = #{fileName} AND SF.FILENAME =SFM.FILENAME
 	</select>
 
 	<delete id="removeSharedFileMapping" parameterType="map">
-		delete from COLLABORATE.SHARE_FILES_MAPPING where fileName=#{fileName} and sharedWith=#{sharedWith} and sharedUser=#{userName}
+		delete from
+		COLLABORATE.SHARE_FILES_MAPPING where fileName=#{fileName} and
+		sharedWith=#{sharedWith} and sharedUser=#{userName}
 	</delete>
 
 	<update id="updateUser" parameterType="com.slabs.collaborate.core.entity.User">
 
 	</update>
 
-	<!-- <update id="createSchema"> create schema EXPENSETRACKER </update> <update id="dropSchema"> drop schema EXPENSETRACKER RESTRICT </update> <update id="createUserTable"> CREATE TABLE EXPENSETRACKER.USER_TABLE 
-		( firstname varchar(50), lastName varchar(50), username varchar(50), password varchar(50), email varchar(75), mobile varchar(14), address varchar(175), pincode varchar(10), age varchar(2), sex varchar(6), 
-		occupation varchar(50), qualification varchar(100), city varchar(50), state varchar(50), country varchar(50), primary key (username) ) </update> <select id="login" parameterMap="map" resultType="com.slabs.expensetracker.entity"> 
-		select * from EXPENSETRACKER.user_table where username = #{userName} and password = #{password} </select> -->
+	<!-- <update id="createSchema"> create schema EXPENSETRACKER </update> <update 
+		id="dropSchema"> drop schema EXPENSETRACKER RESTRICT </update> <update id="createUserTable"> 
+		CREATE TABLE EXPENSETRACKER.USER_TABLE ( firstname varchar(50), lastName 
+		varchar(50), username varchar(50), password varchar(50), email varchar(75), 
+		mobile varchar(14), address varchar(175), pincode varchar(10), age varchar(2), 
+		sex varchar(6), occupation varchar(50), qualification varchar(100), city 
+		varchar(50), state varchar(50), country varchar(50), primary key (username) 
+		) </update> <select id="login" parameterMap="map" resultType="com.slabs.expensetracker.entity"> 
+		select * from EXPENSETRACKER.user_table where username = #{userName} and 
+		password = #{password} </select> -->
 
 
 </mapper>
