@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.apache.commons.io.FileUtils;
@@ -189,16 +190,14 @@ public class FileUtil {
 
 	public static String readFile(File file) {
 
-		BufferedReader bf = null;
+		BufferedReader reader = null;
 		if (file.exists()) {
 			if (file.isFile()) {
-				DataInputStream ds = null;
 				try {
-					ds = new DataInputStream(new FileInputStream(file));
-					bf = new BufferedReader(new InputStreamReader(ds));
+					reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 					String fileString = "", temp = "";
 
-					while ((temp = bf.readLine()) != null) {
+					while ((temp = reader.readLine()) != null) {
 						fileString = fileString + temp;
 					}
 					return fileString;
@@ -206,14 +205,42 @@ public class FileUtil {
 					L.error("Error reading file {}, exception {}", file.getName(), ex);
 				} finally {
 					try {
-						ds.close();
-						bf.close();
+						if (reader != null) {
+							reader.close();
+						}
 					} catch (IOException ex) {
 						L.error("Error closing stream {}", ex);
 					}
 				}
 			}
 		}
+		return "";
+	}
+
+	public static String readFileFromClassPath(String fileName) {
+
+		BufferedReader reader = null;
+		try {
+			InputStream stream = FileUtil.class.getClassLoader().getResourceAsStream(fileName);
+			reader = new BufferedReader(new InputStreamReader(stream));
+			String temp = "", fileString = "";
+			while ((temp = reader.readLine()) != null) {
+				fileString = fileString + temp;
+			}
+
+			return fileString;
+		} catch (IOException ex) {
+			L.error("Error reading file from classpath {}, exception {}", fileName, ex);
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (IOException ex) {
+				L.error("Error closing stream {}", ex);
+			}
+		}
+
 		return "";
 	}
 }
