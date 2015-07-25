@@ -194,13 +194,13 @@ public class FileUtil {
 		if (file.exists()) {
 			if (file.isFile()) {
 				try {
+					StringBuffer fileString = new StringBuffer();
+					String temp = "";
 					reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-					String fileString = "", temp = "";
-
 					while ((temp = reader.readLine()) != null) {
-						fileString = fileString + temp;
+						fileString.append(temp);
 					}
-					return fileString;
+					return fileString.toString();
 				} catch (IOException ex) {
 					L.error("Error reading file {}, exception {}", file.getName(), ex);
 				} finally {
@@ -223,12 +223,13 @@ public class FileUtil {
 		try {
 			InputStream stream = FileUtil.class.getClassLoader().getResourceAsStream(fileName);
 			reader = new BufferedReader(new InputStreamReader(stream));
-			String temp = "", fileString = "";
+			StringBuffer fileString = new StringBuffer();
+			String temp = "";
 			while ((temp = reader.readLine()) != null) {
-				fileString = fileString + temp;
+				fileString.append(temp);
 			}
 
-			return fileString;
+			return fileString.toString();
 		} catch (IOException ex) {
 			L.error("Error reading file from classpath {}, exception {}", fileName, ex);
 		} finally {
