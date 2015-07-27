@@ -4092,7 +4092,7 @@ body.x-nbr .x-btn-default-toolbar-large {
 
 .x-panel-body-default {
 	background: white;
-	border-color: #157fcc;
+	border-color: #ffffff;
 	color: black;
 	font-size: 13px;
 	font-family: cambria;
@@ -6000,7 +6000,7 @@ body.x-nbr .x-tip-form-invalid {
 	padding: 3px 3px 0 3px
 }
 
-.x-tip-header-text-container-form-invalid {
+.x-tip-header-text-.x-border-layout-ct-form-invalid {
 	color: black;
 	font-size: 13px;
 	font-weight: bold
@@ -9326,7 +9326,7 @@ body.x-nbr .x-grid-row-editor-buttons {
 }
 
 .x-border-layout-ct {
-	background-color: #3892d3
+	background-color: #ffffff;
 }
 
 .x-menu {
