@@ -1,6 +1,6 @@
 Ext.define('LoginApp.controller.LoginAppController', {
 	extend : 'Ext.app.Controller',
-	views : [ 'Login', 'RegisterWizard' ],
+	views : [ 'Login', 'Register' ],
 	init : function() {
 
 		this.control({
@@ -16,8 +16,10 @@ Ext.define('LoginApp.controller.LoginAppController', {
 			},
 			'[itemId=loginBtn]' : {
 				click : function(button) {
-
-					var loginView = button.up('[itemId=loginView]');
+					
+					window.open('/Collaborate/Verify.jsp', '_blank');
+					
+					/* var loginView = button.up('[itemId=loginView]');
 					var loginForm = loginView.loginForm;
 					var errLabel = loginForm.down('[itemId=loginErrorLabel]');
 
@@ -36,7 +38,7 @@ Ext.define('LoginApp.controller.LoginAppController', {
 							}
 						});
 
-					}
+					} */
 				}
 			},
 			'[itemId=loginPassword]' : {

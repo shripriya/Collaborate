@@ -1,7 +1,7 @@
-Ext.define('LoginApp.view.RegisterWizard', {
+Ext.define('LoginApp.view.Register', {
 	extend : 'Ext.panel.Panel',
-	xtype : 'registerwizard',
-	itemId: 'registerWizard',
+	xtype : 'register',
+	itemId: 'register',
 	title : 'Register',
 	layout : {
 		type : 'hbox',
@@ -15,7 +15,7 @@ Ext.define('LoginApp.view.RegisterWizard', {
 				xtype : 'panel',
 				itemId: 'wizardPanel',				
 				layout : {
-					type : 'card'
+					type : 'fit'
 				},
 				items : [ {
 					xtype : 'form',
@@ -160,47 +160,8 @@ Ext.define('LoginApp.view.RegisterWizard', {
 						parentFieldItemId : 'registerForm',
 						itemId : 'confirmPwdField'
 					} ]
-				}, {
-					xtype : 'form',
-					padding : '100 0 0 0',
-					height: 550,
-					width : 800,
-					layout : {
-						type : 'vbox',
-						pack: 'center',
-						padding : '50 20 30 50'
-					},
-					title : 'Verify Email',
-					itemId : 'verifyEmailForm',
-					items : [ {
-						xtype : 'displayfield',
-						padding : '20 0 0 0',
-						fieldLabel : 'Email',
-						labelWidth : 110,
-						labelAlign : 'left',
-						width : 350,
-						allowBlank : false,
-						labelSeparator : '',
-						name : 'verifyEmail',
-						itemId : 'verifyEmailField'
-					}, {
-						xtype : 'textfield',
-						padding : '20 0 0 0',
-						fieldLabel : 'Verification Code',
-						labelWidth : 110,
-						labelAlign : 'left',
-						width : 350,
-						allowBlank : false,
-						labelSeparator : '',
-						name : 'vcode',
-						itemId : 'vCodeField'
-					} ]					
-				} ],
-				buttons : [ {
-					text : 'Previous',
-					hidden : true,
-					itemId : 'regPrevBtn'
-				}, '->', {
+				}, ],
+				buttons : [{
 					text : 'Register',
 					itemId : 'registerBtnField'
 				} ]

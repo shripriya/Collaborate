@@ -57,7 +57,6 @@ public class RegistrationService implements CollaborateService {
 							paramsMap.get("mobile"), "N");
 					mapper.createUser(u);
 					session.commit();
-
 					sendVerificationMail(paramsMap);
 
 					outputMap.put("status_msg", "Registration Complete");

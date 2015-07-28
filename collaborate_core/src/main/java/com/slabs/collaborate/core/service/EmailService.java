@@ -32,14 +32,16 @@ public class EmailService implements CollaborateService {
 	@Override
 	public Map<String, Object> process(Map<String, String> paramsMap) {
 
+		SqlSession session = null;
 		try {
-			SqlSession session = DatabaseHelper.openSession();
+			session = DatabaseHelper.openSession();
 			SQLMapper mapper = session.getMapper(SQLMapper.class);
 
 			String emailType = paramsMap.get("emailType");
 			if (VERIFY_EMAIL.equals(emailType)) {
 				paramsMap.put("vCode", RandomGenerator.generateRandomText());
-				/*mapper.createUserActivationEnrty(paramsMap);*/
+				mapper.createUserActivationEnrty(paramsMap);
+				session.commit();
 				sendVerificationEmail(paramsMap);
 			}
 		} catch (IOException ex) {
