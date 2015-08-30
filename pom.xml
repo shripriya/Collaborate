@@ -16,6 +16,7 @@
 		<module>Collaborate</module>
 		<module>collaborate_core</module>
 		<module>utilities</module>
+		<module>scripts</module>
 	</modules>
 
 
