@@ -31,7 +31,23 @@ public class EmailUtil {
 
 	private static String EMAIL_ADMIN_NAME;
 
+	/**
+	 * This method will initialize the Email utility with the following
+	 * properties
+	 * 
+	 * {appName}.email.admin.username {appName}.email.admin.password
+	 * {appName}.email.smtp.port {appName}.email.host
+	 * {appName}.email.admin.email {appName}.email.admin.name
+	 * 
+	 * @param props
+	 * @param appName
+	 * 
+	 * 
+	 * 
+	 */
 	public static void initialize(Properties props, String appName) {
+
+		L.info("Initializing Email Utility for Application : {}", appName);
 
 		APP_NAME = appName;
 
@@ -68,7 +84,7 @@ public class EmailUtil {
 			email.setSubject(subject);
 			email.addTo(toEmails);
 		} catch (EmailException e) {
-			throw new CollaborateUtilityException("Exception occurred while creating email", e, true);
+			throw new CollaborateUtilityException("Exception occurred while creating email", e, L);
 		}
 		return email;
 	}
@@ -95,7 +111,7 @@ public class EmailUtil {
 			email.addTo(toEmails);
 
 		} catch (EmailException e) {
-			throw new CollaborateUtilityException("Exception occurred while creating email", e, true);
+			throw new CollaborateUtilityException("Exception occurred while creating email", e, L);
 		}
 		return email;
 	}
@@ -103,7 +119,7 @@ public class EmailUtil {
 	private static Email configure(Email email) throws CollaborateUtilityException {
 
 		if (properties == null) {
-			throw new CollaborateUtilityException("Initialize Email Utility, before creating email", true);
+			throw new CollaborateUtilityException("Initialize Email Utility, before creating email", L);
 		}
 
 		try {
@@ -114,7 +130,7 @@ public class EmailUtil {
 			email.setStartTLSRequired(true);
 			email.setStartTLSEnabled(true);
 		} catch (EmailException e) {
-			throw new CollaborateUtilityException("Exception occurred while configuring email", e, true);
+			throw new CollaborateUtilityException("Exception occurred while configuring email", e, L);
 		}
 		return email;
 	}

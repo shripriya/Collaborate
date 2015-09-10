@@ -14,7 +14,6 @@ import com.slabs.collaborate.core.db.DatabaseHelper;
 import com.slabs.collaborate.core.db.SQLMapper;
 import com.slabs.collaborate.utilities.CollaborateUtilityException;
 import com.slabs.collaborate.utilities.EmailUtil;
-import com.slabs.collaborate.utilities.FileUtil;
 import com.slabs.collaborate.utilities.MarkerEngine;
 import com.slabs.collaborate.utilities.RandomGenerator;
 
@@ -54,9 +53,11 @@ public class EmailService implements CollaborateService {
 
 	private void sendVerificationEmail(Map<String, String> paramsMap) {
 
+		String email = paramsMap.get("email");
 		try {
 			String message = MarkerEngine.process("VERIFY_EMAIL.ftl", paramsMap);
-			Email mail = EmailUtil.createHtmlEmail(message, "Verify your email", paramsMap.get("email"));
+			Email mail = EmailUtil.createHtmlEmail(message, "Verify your email", email);
+			L.info("Sending verification email to {}", email);
 			mail.send();
 		} catch (CollaborateUtilityException ex) {
 			L.error("Exception: {}", ex);

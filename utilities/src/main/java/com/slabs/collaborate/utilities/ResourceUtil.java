@@ -38,14 +38,14 @@ public class ResourceUtil {
 			if (home.isDirectory()) {
 				L.info("File path \" {} \" exists", RESOURCE_HOME);
 			} else {
-				throw new CollaborateUtilityException("File path \"" + RESOURCE_HOME + "\" is not a directory", true);
+				throw new CollaborateUtilityException("File path \"" + RESOURCE_HOME + "\" is not a directory", L);
 			}
 		} else {
 			if (create) {
 				L.info("File path \" {} \" does not exist, hence creating the same", RESOURCE_HOME);
 				home.mkdirs();
 			} else {
-				throw new CollaborateUtilityException("File path \"" + RESOURCE_HOME + "\" does not exist", true);
+				throw new CollaborateUtilityException("File path \"" + RESOURCE_HOME + "\" does not exist", L);
 			}
 		}
 
@@ -71,14 +71,14 @@ public class ResourceUtil {
 			if (directory.isDirectory()) {
 				L.info("File path \" {} \" exists", directory.getPath());
 			} else {
-				throw new CollaborateUtilityException("File path \"" + directory.getPath() + "\" is not a directory", true);
+				throw new CollaborateUtilityException("File path \"" + directory.getPath() + "\" is not a directory", L);
 			}
 		} else {
 			if (create) {
 				L.info("File path \" {} \" does not exist, hence creating the same", directory.getPath());
 				directory.mkdirs();
 			} else {
-				throw new CollaborateUtilityException("File path \"" + directory.getPath() + "\" does not exist", true);
+				throw new CollaborateUtilityException("File path \"" + directory.getPath() + "\" does not exist", L);
 			}
 		}
 		return directory;
@@ -92,7 +92,7 @@ public class ResourceUtil {
 			if (file.isFile()) {
 				L.info("File \" {} \" exists", file.getPath());
 			} else {
-				throw new CollaborateUtilityException("File path \"" + file.getPath() + "\" is not a file", true);
+				throw new CollaborateUtilityException("File path \"" + file.getPath() + "\" is not a file", L);
 			}
 		} else {
 			if (create) {
@@ -100,7 +100,7 @@ public class ResourceUtil {
 				try {
 					file.createNewFile();
 				} catch (IOException e) {
-					throw new CollaborateUtilityException("Exception occured while creating file " + file.getPath(), e, true);
+					throw new CollaborateUtilityException("Exception occured while creating file " + file.getPath(), e, L);
 				}
 			}
 		}

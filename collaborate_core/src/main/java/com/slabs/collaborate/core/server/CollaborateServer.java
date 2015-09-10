@@ -7,6 +7,7 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.slabs.collaborate.core.PropertyConstants;
 import com.slabs.collaborate.core.db.DatabaseHelper;
 import com.slabs.collaborate.utilities.CollaborateUtilityException;
 import com.slabs.collaborate.utilities.EmailUtil;
@@ -42,24 +43,24 @@ public class CollaborateServer {
 
 		try {
 			L.info("Inititalizing ResourceUtil....");
-			ResourceUtil.initialize("COLLABORATE_HOME");
+			ResourceUtil.initialize(PropertyConstants.COLLABORATE_HOME);
 			L.info("ResourceUtil initialization complete....");
 
 			L.info("Initializing PropertiesUtil....");
-			PropertiesUtil.loadProperties(ResourceUtil.getResourceDirectory("properties", false), ".properties");
+			PropertiesUtil.loadProperties(ResourceUtil.getResourceDirectory(PropertyConstants.PROPERTIES_DIRECTORY, false), ".properties");
 			L.info("PropertiesUtil initialization is complete....");
 
 			Map<String, Properties> map = PropertiesUtil.getPropertiesMap();
-			Properties p = map.get("collaborate.properties");
+			Properties p = map.get(PropertyConstants.COLLABORATE_PROPERTIES_FILE);
 
 			L.info("Initializing EmailUtil....");
-			EmailUtil.initialize(map.get("email.properties"), p.getProperty("app.name"));
+			EmailUtil.initialize(map.get(PropertyConstants.EMAIL_PROPERTIES_FILE), p.getProperty(PropertyConstants.APP_NAME));
 
 			L.info("Initializing Marker Engine....");
 			MarkerEngine.initialize();
-			
+
 			L.info("Looking for Collaborate file upload directory....");
-			FileUtil.isDirectoryAvailable(p.getProperty("collaborate.userrepository"), true);
+			FileUtil.isDirectoryAvailable(p.getProperty(PropertyConstants.COLLABORATE_PROPS_USER_REPO), true);
 
 			L.info("Initializing DataBaseHelper....");
 			DatabaseHelper.initialize();

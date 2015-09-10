@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.slabs.collaborate.core.Constants;
 import com.slabs.collaborate.utilities.FileUtil;
 import com.slabs.collaborate.utilities.PropertiesUtil;
 
@@ -31,27 +32,27 @@ public class UserRepositoryService implements CollaborateService {
 			if (RepoService.CREATE == RepoService.valueOf(repoService)) {
 				boolean isDirectoryCreated = FileUtil.createDirectory(new File(collaborateDirectory), userName);
 				if (isDirectoryCreated) {
-					outputMap.put("success", true);
-					outputMap.put("msg", "User repository created for user " + userName);
+					outputMap.put(Constants.SUCCESS, true);
+					outputMap.put(Constants.MSG, "User repository created for user " + userName);
 				} else {
-					outputMap.put("success", false);
-					outputMap.put("msg", "Exception occurred while creating user repository. Please contact customer support");
+					outputMap.put(Constants.SUCCESS, false);
+					outputMap.put(Constants.MSG, "Exception occurred while creating user repository. Please contact customer support");
 				}
 			} else if (RepoService.DELETE == RepoService.valueOf(repoService)) {
 				boolean isFileDeleted = FileUtil.deleteFile(new File(collaborateDirectory + "\\" + userName));
 				if (isFileDeleted) {
-					outputMap.put("success", true);
-					outputMap.put("msg", "User repository deleted");
+					outputMap.put(Constants.SUCCESS, true);
+					outputMap.put(Constants.MSG, "User repository deleted");
 				} else {
-					outputMap.put("success", false);
-					outputMap.put("msg", "Exception occured while deleting user repository. Please contact customer support");
+					outputMap.put(Constants.SUCCESS, false);
+					outputMap.put(Constants.MSG, "Exception occured while deleting user repository. Please contact customer support");
 				}
 			}
 
 		} catch (IOException ex) {
 			L.error("Exception :  {}", ex);
-			outputMap.put("success", false);
-			outputMap.put("msg", "Exception occurred with User Repository service. Please contact customer support");
+			outputMap.put(Constants.SUCCESS, false);
+			outputMap.put(Constants.MSG, "Exception occurred with User Repository service. Please contact customer support");
 		}
 
 		return outputMap;

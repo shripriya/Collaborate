@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.slabs.collaborate.core.Constants;
 import com.slabs.collaborate.core.db.DatabaseHelper;
 import com.slabs.collaborate.core.db.SQLMapper;
 import com.slabs.collaborate.core.entity.User;
@@ -43,21 +44,21 @@ public class RetrieveUserDetailService implements CollaborateService {
 					user.setPassword("");
 					outputMap.put("users", user);
 				}
-				outputMap.put("success", true);
-				outputMap.put("msg", "User details retrieved");
+				outputMap.put(Constants.SUCCESS, true);
+				outputMap.put(Constants.MSG, "User details retrieved");
 			} else {
-				outputMap.put("success", false);
-				outputMap.put("msg", "Request parameter username is mandatory");
+				outputMap.put(Constants.SUCCESS, false);
+				outputMap.put(Constants.MSG, "Request parameter username is mandatory");
 			}
 
 		} catch (IOException ex) {
 			L.error("Exception :  {}", ex);
-			outputMap.put("success", false);
-			outputMap.put("msg", "Error retrieving user detail. Please contact customer support");
+			outputMap.put(Constants.SUCCESS, false);
+			outputMap.put(Constants.MSG, "Error retrieving user detail. Please contact customer support");
 		} catch (Exception ex) {
 			L.error("Exception :  {}", ex);
-			outputMap.put("success", false);
-			outputMap.put("msg", "Error retrieving user detail. Please contact customer support");
+			outputMap.put(Constants.SUCCESS, false);
+			outputMap.put(Constants.MSG, "Error retrieving user detail. Please contact customer support");
 		}
 
 		return outputMap;

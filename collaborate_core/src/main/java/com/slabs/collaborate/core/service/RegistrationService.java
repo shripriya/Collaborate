@@ -9,10 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.slabs.collaborate.core.Constants;
 import com.slabs.collaborate.core.db.DatabaseHelper;
 import com.slabs.collaborate.core.db.SQLMapper;
 import com.slabs.collaborate.core.entity.User;
 import com.slabs.collaborate.core.exception.CollaborateException;
+import com.slabs.collaborate.utilities.PropertiesUtil;
 
 @Service(value = "RegistrationService")
 public class RegistrationService implements CollaborateService {
@@ -44,7 +46,7 @@ public class RegistrationService implements CollaborateService {
 			}
 
 			Map<String, Object> userServiceOutput = userService.process(paramsMap);
-			String status = (String) userServiceOutput.get("status_code");
+			String status = (String) userServiceOutput.get(Constants.STATUS_CODE);
 
 			if ("01".equals(status)) {
 
@@ -57,10 +59,11 @@ public class RegistrationService implements CollaborateService {
 							paramsMap.get("mobile"), "N");
 					mapper.createUser(u);
 					session.commit();
+
 					sendVerificationMail(paramsMap);
 
-					outputMap.put("status_msg", "Registration Complete");
-					outputMap.put("status_code", "00");
+					outputMap.put(Constants.STATUS_MSG, "Registration Complete");
+					outputMap.put(Constants.STATUS_CODE, "00");
 
 				} else {
 					populateFailureResponse(outputMap, "Error creating repository for user. Please contact customer support");
@@ -88,13 +91,13 @@ public class RegistrationService implements CollaborateService {
 
 	private void populateFailureResponse(Map<String, Object> outputMap, String msg) {
 
-		outputMap.put("status_msg", "Registration Failed. " + msg);
-		outputMap.put("status_code", "99");
+		outputMap.put(Constants.STATUS_MSG, "Registration Failed. " + msg);
+		outputMap.put(Constants.STATUS_CODE, "99");
 	}
 
 	private void sendVerificationMail(Map<String, String> paramsMap) {
 
-		paramsMap.put("emailType", "VERIFY_EMAIL");
+		paramsMap.put("emailType", Constants.VERIFY_EMAIL);
 		emailService.process(paramsMap);
 	}
 

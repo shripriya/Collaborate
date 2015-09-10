@@ -19,4 +19,10 @@ public class Constants {
 
 	public static final String MSG = "msg";
 
+	public static final String VERIFY_EMAIL = "VERIFY_EMAIL";
+
+	public static final String STATUS_CODE = "status_code";
+
+	public static final String STATUS_MSG = "status_msg";
+
 }

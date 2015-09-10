@@ -39,15 +39,15 @@ public class MarkerEngine {
 			return writer.toString();
 
 		} catch (IOException ex) {
-			throw new CollaborateUtilityException("Exception occurred while processing template", ex, false);
+			throw new CollaborateUtilityException("Exception occurred while processing template", ex);
 		} catch (TemplateException ex) {
-			throw new CollaborateUtilityException("Exception occurred while processing template", ex, false);
+			throw new CollaborateUtilityException("Exception occurred while processing template", ex);
 		} finally {
 			if (writer != null) {
 				try {
 					writer.close();
 				} catch (IOException ex) {
-					throw new CollaborateUtilityException("Exception occurred while processing template", ex, false);
+					throw new CollaborateUtilityException("Exception occurred while processing template", ex);
 				}
 			}
 		}
@@ -67,15 +67,15 @@ public class MarkerEngine {
 			t = configuration.getTemplate(templateName);
 			t.process(model, writer);
 		} catch (IOException ex) {
-			throw new CollaborateUtilityException("Exception occurred while processing template", ex, false);
+			throw new CollaborateUtilityException("Exception occurred while processing template", ex);
 		} catch (TemplateException ex) {
-			throw new CollaborateUtilityException("Exception occurred while processing template", ex, false);
+			throw new CollaborateUtilityException("Exception occurred while processing template", ex);
 		} finally {
 			if (writer != null) {
 				try {
 					writer.close();
 				} catch (IOException ex) {
-					throw new CollaborateUtilityException("Exception occurred while processing template", ex, false);
+					throw new CollaborateUtilityException("Exception occurred while processing template", ex);
 				}
 			}
 		}

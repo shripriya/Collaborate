@@ -5,18 +5,21 @@ import org.slf4j.LoggerFactory;
 
 public class CollaborateUtilityException extends Exception {
 
-	private static final Logger L = LoggerFactory.getLogger(CollaborateUtilityException.class);
+	private static final long serialVersionUID = -8959143264768014701L;
 
 	public CollaborateUtilityException() {
 
 	}
 
-	public CollaborateUtilityException(String message, boolean logMessage) {
+	public CollaborateUtilityException(String message) {
 
 		super(message);
-		if (logMessage) {
-			L.error(message);
-		}
+	}
+
+	public CollaborateUtilityException(String message, Logger L) {
+
+		super(message);
+		L.error(message);
 
 	}
 
@@ -26,21 +29,29 @@ public class CollaborateUtilityException extends Exception {
 
 	}
 
-	public CollaborateUtilityException(String message, Throwable cause, boolean logMessage) {
+	public CollaborateUtilityException(String message, Throwable cause) {
 
 		super(message, cause);
-		if (logMessage) {
-			L.error(message + ", " + cause.getMessage());
-		}
 
 	}
 
-	public CollaborateUtilityException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace, boolean logMessage) {
+	public CollaborateUtilityException(String message, Throwable cause, Logger L) {
+
+		super(message, cause);
+		L.error(message + ", " + cause.getMessage());
+
+	}
+
+	public CollaborateUtilityException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 
 		super(message, cause, enableSuppression, writableStackTrace);
-		if (logMessage) {
-			L.error(message);
-		}
+
+	}
+
+	public CollaborateUtilityException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace, Logger L) {
+
+		super(message, cause, enableSuppression, writableStackTrace);
+		L.error(message);
 
 	}
 

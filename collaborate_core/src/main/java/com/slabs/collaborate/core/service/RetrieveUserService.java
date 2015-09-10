@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.slabs.collaborate.core.Constants;
 import com.slabs.collaborate.core.db.DatabaseHelper;
 import com.slabs.collaborate.core.db.SQLMapper;
 import com.slabs.collaborate.core.entity.User;
@@ -28,24 +29,24 @@ public class RetrieveUserService implements CollaborateService {
 			User user = mapper.retrieveUser(paramsMap);
 
 			if (user != null) {
-				outputMap.put("status_msg", "User available");
-				outputMap.put("status_code", "00");
+				outputMap.put(Constants.STATUS_MSG, "User available");
+				outputMap.put(Constants.STATUS_CODE, "00");
 				outputMap.put("user", user);
 			} else {
-				outputMap.put("status_msg", "User not available");
-				outputMap.put("status_code", "01");
+				outputMap.put(Constants.STATUS_MSG, "User not available");
+				outputMap.put(Constants.STATUS_CODE, "01");
 				outputMap.put("user", null);
 			}
 
 		} catch (IOException ex) {
 			L.error("Exception : {}", ex);
-			outputMap.put("status_msg", "Exception Occured. Please contact customer support");
-			outputMap.put("status_code", "99");
+			outputMap.put(Constants.STATUS_MSG, "Exception Occured. Please contact customer support");
+			outputMap.put(Constants.STATUS_CODE, "99");
 
 		} catch (Exception ex) {
 			L.error("Exception : {}", ex);
-			outputMap.put("status_msg", "Exception Occured. Please contact customer support");
-			outputMap.put("status_code", "99");
+			outputMap.put(Constants.STATUS_MSG, "Exception Occured. Please contact customer support");
+			outputMap.put(Constants.STATUS_CODE, "99");
 		} finally {
 			if (session != null) {
 				session.close();
