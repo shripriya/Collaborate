@@ -11,15 +11,21 @@ Ext.define('LoginApp.controller.LoginAppController', {
 					loginView.loginUserName = loginView.down('[itemId=loginUserName]');
 					loginView.loginPassword = loginView.down('[itemId=loginPassword]');
 					loginView.loginBtn = loginView.down('[itemId=loginBtn]');
-					loginView.registerForm = loginView.down('[itemId=registerForm]');
 				}
+			},
+			'[itemId=register]' : {
+
+				afterrender : function(register) {
+
+					register.registerPanel = register.down('[itemId=registerPanel]');
+					register.registerForm = register.down('[itemId=registerForm]');
+				}
+
 			},
 			'[itemId=loginBtn]' : {
 				click : function(button) {
-					
-					window.open('/Collaborate/Verify.jsp', '_blank');
-					
-					/* var loginView = button.up('[itemId=loginView]');
+
+					var loginView = button.up('[itemId=loginView]');
 					var loginForm = loginView.loginForm;
 					var errLabel = loginForm.down('[itemId=loginErrorLabel]');
 
@@ -37,8 +43,8 @@ Ext.define('LoginApp.controller.LoginAppController', {
 								errLabel.setText("* " + action.result.status_msg);
 							}
 						});
+					}
 
-					} */
 				}
 			},
 			'[itemId=loginPassword]' : {
@@ -54,52 +60,47 @@ Ext.define('LoginApp.controller.LoginAppController', {
 			'[itemId=registerBtnField]' : {
 				click : function(button) {
 
-					var wizPanel = button.up('[itemId=wizardPanel]');
-					var prevButton = wizPanel.down('[itemId=regPrevBtn]');
-					var loginView = button.up('[itemId=loginView]');
-					if (button.getText() == 'Register') {
-						if (loginView.registerForm.isValid()) {
-							loginView.registerForm.setLoading("Registering....");
-							CollaborateUtil.callService('RegistrationService', 'POST', loginView.registerForm.getValues(), function(RESP) {
+					var register = button.up('[itemId=register]');
+					var registerForm = register.registerPanel.down('[itemId=registerForm]');
 
-								loginView.registerForm.setLoading(false);
-								if (RESP != null) {
-									if (RESP.REG_RESP.status_code === '00') {
-										loginView.registerForm.getForm().reset();
+					if (registerForm.isValid()) {
+						registerForm.setLoading("Registering....");
+						CollaborateUtil.callService('RegistrationService', 'POST', registerForm.getValues(), function(RESP) {
 
-										var layout = wizPanel.getLayout()
-										layout['next']();
-										prevButton.setVisible(true);
-										button.setText('Verify');
+							registerForm.setLoading(false);
+							if (RESP != null) {
+								if (RESP.REG_RESP.status_code === '00') {
+									registerForm.getForm().reset();
 
-										/*
-										 * Ext.Msg.show({ title : 'Collaborate',
-										 * msg : RESP.REG_RESP.status_msg, icon :
-										 * Ext.Msg.OK });
-										 */
-									} else if (RESP.REG_RESP.status_code === '99') {
-										Ext.Msg.show({
-											title : 'Collaborate',
-											msg : RESP.REG_RESP.status_msg,
-											icon : Ext.Msg.ERROR
-										});
-									}
-								} else {
 									Ext.Msg.show({
 										title : 'Collaborate',
-										msg : "Registration Failed",
+										msg : RESP.REG_RESP.status_msg,
+										icon : Ext.Msg.OK
+									});
+
+								} else if (RESP.REG_RESP.status_code === '99') {
+									Ext.Msg.show({
+										title : 'Collaborate',
+										msg : RESP.REG_RESP.status_msg,
 										icon : Ext.Msg.ERROR
 									});
 								}
-							});
-						} else {
-							Ext.Msg.show({
-								title : 'Collaborate',
-								msg : "Please correct the error",
-								icon : Ext.Msg.ERROR
-							});
-						}
+							} else {
+								Ext.Msg.show({
+									title : 'Collaborate',
+									msg : "Registration Failed",
+									icon : Ext.Msg.ERROR
+								});
+							}
+						});
+					} else {
+						Ext.Msg.show({
+							title : 'Collaborate',
+							msg : "Please correct the error",
+							icon : Ext.Msg.ERROR
+						});
 					}
+
 				}
 			},
 		});

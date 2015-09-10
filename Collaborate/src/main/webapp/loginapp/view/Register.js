@@ -13,7 +13,7 @@ Ext.define('LoginApp.view.Register', {
 		Ext.applyIf(me, {
 			items : [ {
 				xtype : 'panel',
-				itemId: 'wizardPanel',				
+				itemId: 'registerPanel',				
 				layout : {
 					type : 'fit'
 				},

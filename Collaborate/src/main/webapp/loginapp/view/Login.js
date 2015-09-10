@@ -94,6 +94,6 @@ Ext.define('LoginApp.view.Login', {
 
 		} ]
 	}, {
-		xtype: 'registerwizard'
+		xtype: 'register'
 	}]
 });
