@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
-<title>Verify Email</title>
+<title>Collaborate Account Verification</title>
 <script type="text/javascript"
 	src="http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.min.js"></script>
 <script type="text/javascript" src="resources/jquery/jq.js"></script>

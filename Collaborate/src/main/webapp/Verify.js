@@ -26,7 +26,9 @@ Ext.application({
 				}, {
 					xtype : 'container',
 					layout : {
-						type : 'hbox'
+						type : 'hbox',
+						pack : 'center',
+						padding : '100 0 0 0'
 					},
 					items : [ {
 						xtype : 'form',
@@ -34,14 +36,17 @@ Ext.application({
 							type : 'vbox',
 							padding : '20 20 0 20'
 						},
+						height : 200,
+						width : 400,
 						itemId : 'verifyEmailForm',
 						items : [ {
-							xtype : 'displayfield',
+							xtype : 'textfield',
 							padding : '20 0 0 0',
-							fieldLabel : 'Email',
+							fieldLabel : 'Username',
 							labelWidth : 110,
 							labelAlign : 'left',
 							width : 350,
+							msgTarget : 'side',
 							allowBlank : false,
 							labelSeparator : '',
 							name : 'verifyEmail',
@@ -53,20 +58,18 @@ Ext.application({
 							labelWidth : 110,
 							labelAlign : 'left',
 							width : 350,
+							msgTarget : 'side',
 							allowBlank : false,
 							labelSeparator : '',
 							name : 'vcode',
 							itemId : 'vCodeField'
-						}, {
-							xtype : 'container',
-							layout : {
-								type : 'hbox',
-								pack : 'end'
-							},
-							items : [ {
-								xtype : 'button',
-								text : 'Verify'
-							} ]
+						} ],
+						buttons : [ {
+							text : 'Verify Account',
+							itemId : 'verifyAccBtn'
+						},{
+							text : 'Resend Email',
+							itemId : 'resendEmail'
 						} ]
 					} ]
 				} ]

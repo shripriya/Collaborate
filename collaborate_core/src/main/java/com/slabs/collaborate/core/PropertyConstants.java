@@ -28,6 +28,8 @@ public class PropertyConstants {
 
 	public static final String EMAIL_SSL_ENABLE = "collaborate.email.ssl.enable";
 
+	public static final String COLLABORATE_EMAIL_VERIFY_ENABLED = "collaborate.email.verify.enabled";
+
 	public static String APP_NAME = "app.name";
 
 }

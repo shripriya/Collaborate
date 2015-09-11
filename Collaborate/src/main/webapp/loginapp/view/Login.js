@@ -5,6 +5,7 @@
  */
 Ext.apply(Ext.form.field.VTypes, {
 	password : function(val, field) {
+
 		var parentField = field.up('[itemId=' + field.parentFieldItemId + ']');
 		var passWordField = parentField.down('[itemId=' + field.passwordFieldItemId + ']');
 		return val === passWordField.getValue();
@@ -32,25 +33,25 @@ Ext.apply(Ext.form.field.VTypes, {
 Ext.define('LoginApp.view.Login', {
 	extend : 'Ext.panel.Panel',
 	xtype : 'login',
-	itemId : 'loginView',	
+	itemId : 'loginView',
 	layout : {
 		type : 'accordion',
-		titleCollapse: false,
-        animate: true,
-        activeOnTop: true
-	},		
+		titleCollapse : false,
+		animate : true,
+		activeOnTop : true
+	},
 	items : [ {
-		title: 'Login',
-		xtype : 'panel',		
+		title : 'Login',
+		xtype : 'panel',
 		width : 550,
 		layout : {
 			type : 'hbox',
 			pack : 'center',
-			padding: '100 0 0 0'
+			padding : '100 0 0 0'
 		},
 		items : [ {
 			xtype : 'form',
-			height : 180,			
+			height : 180,
 			width : 400,
 			title : 'Collaborate Login',
 			method : 'POST',
@@ -86,6 +87,26 @@ Ext.define('LoginApp.view.Login', {
 				style : {
 					color : 'red'
 				}
+			}, {
+				xtype : 'fieldcontainer',
+				layout : {
+					type : 'hbox',
+					pack : 'end',
+					padding: '0 10 0 10'
+				},
+				items : [ {
+					xtype : 'box',
+					autoEl : {
+						tag : 'a',					
+						href : encodeURI('/Collaborate/Verify.jsp?account_verify=true'),
+						target : '_blank',
+						html : 'Verify Account?',
+						style : {
+							color : 'blue'
+						}
+					}
+				} ]
+
 			} ],
 			buttons : [ {
 				text : 'Login',
@@ -94,6 +115,6 @@ Ext.define('LoginApp.view.Login', {
 
 		} ]
 	}, {
-		xtype: 'register'
-	}]
+		xtype : 'register'
+	} ]
 });

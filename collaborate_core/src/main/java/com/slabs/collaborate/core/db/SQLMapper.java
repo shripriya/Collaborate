@@ -34,6 +34,22 @@ public interface SQLMapper {
 	 * @throws Exception
 	 */
 	public void createUserActivationEnrty(Map<String, String> paramsMap) throws Exception;
+	
+	/**
+	 * This method will retrieve USER information from USER_ACTIVATION_TABLE.
+	 * 
+	 * @param paramsMap
+	 * @throws Exception
+	 */
+	public void retrieveUserForActivation(Map<String, String> paramsMap) throws Exception;
+	
+	/**
+	 * This method will activate the USER.
+	 * 
+	 * @param paramsMap
+	 * @throws Exception
+	 */
+	public void activateUser(Map<String, String> paramsMap) throws Exception;
 
 	/**
 	 * This method retrives the user details and it requires one parameter in

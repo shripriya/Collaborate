@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.slabs.collaborate.core.Constants;
 import com.slabs.collaborate.core.db.DatabaseHelper;
 import com.slabs.collaborate.core.db.SQLMapper;
 import com.slabs.collaborate.utilities.CollaborateUtilityException;
@@ -21,8 +22,6 @@ import com.slabs.collaborate.utilities.RandomGenerator;
 public class EmailService implements CollaborateService {
 
 	private static final Logger L = LoggerFactory.getLogger(EmailService.class);
-
-	private static final String VERIFY_EMAIL = "VERIFY_EMAIL";
 
 	public EmailService() {
 
@@ -37,7 +36,7 @@ public class EmailService implements CollaborateService {
 			SQLMapper mapper = session.getMapper(SQLMapper.class);
 
 			String emailType = paramsMap.get("emailType");
-			if (VERIFY_EMAIL.equals(emailType)) {
+			if (Constants.VERIFY_EMAIL.equals(emailType)) {
 				paramsMap.put("vCode", RandomGenerator.generateRandomText());
 				mapper.createUserActivationEnrty(paramsMap);
 				session.commit();

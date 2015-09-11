@@ -2,6 +2,7 @@ package com.slabs.collaborate.core.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.slabs.collaborate.core.Constants;
+import com.slabs.collaborate.core.PropertyConstants;
 import com.slabs.collaborate.core.db.DatabaseHelper;
 import com.slabs.collaborate.core.db.SQLMapper;
 import com.slabs.collaborate.core.entity.User;
@@ -32,8 +34,11 @@ public class RegistrationService implements CollaborateService {
 
 	public Map<String, Object> process(Map<String, String> paramsMap) {
 
-		Map<String, Object> outputMap = new HashMap<String, Object>();
+		final Map<String, Object> outputMap = new HashMap<String, Object>();
+		final Map<String, Properties> propsMap = PropertiesUtil.getPropertiesMap();
+		final Properties cProps = propsMap.get(PropertyConstants.COLLABORATE_PROPERTIES_FILE);
 		SqlSession session = null;
+		User u = null;
 		try {
 			session = DatabaseHelper.openSession();
 			SQLMapper mapper = session.getMapper(SQLMapper.class);
@@ -54,13 +59,21 @@ public class RegistrationService implements CollaborateService {
 				Map<String, Object> repoServiceOutput = repoService.process(paramsMap);
 
 				if ((boolean) repoServiceOutput.get("success")) {
-
-					User u = new User(paramsMap.get("userName"), paramsMap.get("password"), paramsMap.get("firstName"), paramsMap.get("lastName"), paramsMap.get("sex"), paramsMap.get("email"),
+					boolean verifyEnabled = Boolean.parseBoolean((String) cProps.get(PropertyConstants.COLLABORATE_EMAIL_VERIFY_ENABLED));
+					if(verifyEnabled) {
+					 u = new User(paramsMap.get("userName"), paramsMap.get("password"), paramsMap.get("firstName"), paramsMap.get("lastName"), paramsMap.get("sex"), paramsMap.get("email"),
 							paramsMap.get("mobile"), "N");
+					}else{
+						 u = new User(paramsMap.get("userName"), paramsMap.get("password"), paramsMap.get("firstName"), paramsMap.get("lastName"), paramsMap.get("sex"), paramsMap.get("email"),
+									paramsMap.get("mobile"), "Y");
+					}
+					
 					mapper.createUser(u);
 					session.commit();
 
-					sendVerificationMail(paramsMap);
+					if (verifyEnabled) {
+						sendVerificationMail(paramsMap);
+					}
 
 					outputMap.put(Constants.STATUS_MSG, "Registration Complete");
 					outputMap.put(Constants.STATUS_CODE, "00");

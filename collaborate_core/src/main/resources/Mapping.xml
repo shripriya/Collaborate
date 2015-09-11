@@ -21,6 +21,15 @@
 		values(#{userName}, #{email}, #{vCode}, 'N', CURRENT_DATE)
 	</insert>
 
+	<select id="retrieveUserForActivation" parameterType="map">
+		select *
+		from COLLABORATE.USER_ACTIVATION_TABLE where USERNAME=#{userName}
+	</select>
+	
+	<update id="activateUser" parameterType="map">
+	   update COLLABORATE.USER_ACTIVATION_TABLE set VERIFIED='Y' where USERNAME=#{userName}
+	</update>
+
 	<select id="retrieveUser" parameterType="map"
 		resultType="com.slabs.collaborate.core.entity.User">
 		select * from COLLABORATE.USER_TABLE where userName=
