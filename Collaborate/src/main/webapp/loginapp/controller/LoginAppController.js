@@ -1,6 +1,6 @@
 Ext.define('LoginApp.controller.LoginAppController', {
 	extend : 'Ext.app.Controller',
-	views : [ 'Login', 'Register' ],
+	views : [ 'Login' ],
 	init : function() {
 
 		this.control({

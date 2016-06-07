@@ -41,7 +41,7 @@ and open the template in the editor.
 }
 
 .x-over .x-btn-over .x-btn-default-small-over {
-
+	 text-decoration: none;
 }
 
 .x-fieldset {

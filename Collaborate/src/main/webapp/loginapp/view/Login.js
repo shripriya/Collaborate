@@ -35,10 +35,7 @@ Ext.define('LoginApp.view.Login', {
 	xtype : 'login',
 	itemId : 'loginView',
 	layout : {
-		type : 'accordion',
-		titleCollapse : false,
-		animate : true,
-		activeOnTop : true
+		type : 'fit'
 	},
 	items : [ {
 		title : 'Login',
@@ -51,21 +48,14 @@ Ext.define('LoginApp.view.Login', {
 		},
 		items : [ {
 			xtype : 'form',
-			height : 180,
-			width : 400,
 			title : 'Collaborate Login',
 			method : 'POST',
 			url : URL.loginURL,
 			itemId : 'loginForm',
-			layout : {
-				type : 'vbox',
-				align : 'stretch',
-				pack : 'end'
-			},
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'Username',
-				padding : '0 10 0 10',
+				padding : '20 10 0 10',
 				labelSeparator : '',
 				name : 'userName',
 				vtype : 'username',
@@ -87,26 +77,6 @@ Ext.define('LoginApp.view.Login', {
 				style : {
 					color : 'red'
 				}
-			}, {
-				xtype : 'fieldcontainer',
-				layout : {
-					type : 'hbox',
-					pack : 'end',
-					padding: '0 10 0 10'
-				},
-				items : [ {
-					xtype : 'box',
-					autoEl : {
-						tag : 'a',					
-						href : encodeURI('/Collaborate/Verify.jsp?account_verify=true'),
-						target : '_blank',
-						html : 'Verify Account?',
-						style : {
-							color : 'blue'
-						}
-					}
-				} ]
-
 			} ],
 			buttons : [ {
 				text : 'Login',
@@ -114,7 +84,5 @@ Ext.define('LoginApp.view.Login', {
 			} ]
 
 		} ]
-	}, {
-		xtype : 'register'
 	} ]
 });

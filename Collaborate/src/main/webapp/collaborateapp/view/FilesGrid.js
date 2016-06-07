@@ -10,8 +10,7 @@ Ext.define('CollaborateApp.view.FilesGrid', {
 		text : 'File Name',
 		dataIndex : 'name',
 		flex : 0.5,
-		renderer : function(val, meta, record) {
-
+		renderer : function(val, meta, record) {			
 			var fileName = record.get('name');
 			meta.tdAttr = 'data-qtip="' + fileName + '"';
 

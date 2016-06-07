@@ -1550,6 +1550,7 @@ body.x-nbr .x-btn-default-small {
 
 .x-btn-default-small-over {
 	border-color: #157fcc;
+	text-decoration:none;
 	background-image: none;
 	background-color: #3386c2;
 	background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0%, #4792c8),

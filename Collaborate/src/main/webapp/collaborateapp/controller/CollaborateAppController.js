@@ -492,5 +492,4 @@ Ext.define('CollaborateApp.controller.CollaborateAppController', {
 			}
 		});
 	}
-
 });
