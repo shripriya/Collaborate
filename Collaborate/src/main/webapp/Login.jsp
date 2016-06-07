@@ -1,7 +1,9 @@
 <%@ page session="false"%>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Collaborate Login</title>
 <script type="text/javascript"
 	src="http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.min.js"></script>
@@ -15,7 +17,7 @@
 <link rel="stylesheet" href="resources/css/ext-all-neptune.css" />
 <link rel="stylesheet" href="resources/css/Collaborate.css" />
 </head>
-<body id="appBody" onload="renderLogin(mainContainer)">
+<body id="appBody" onload="renderLogin('mainContainer')">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -31,7 +33,11 @@
 		</div>
 	</nav>
 
-	<div class="container-fluid" id="mainContainer"></div>
+	<div class="row">
+		<div class="container-fluid">
+			<div class="col-lg-12" id="mainContainer"></div>
+		</div>
+	</div>
 
 </body>
 </html>

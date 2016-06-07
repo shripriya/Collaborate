@@ -10,8 +10,8 @@ var renderLogin = function(renderTo) {
 		appFolder : "loginapp",
 		controllers : [ 'LoginAppController' ],
 		launch : function() {
-			this.mainView = Ext.create("Ext.container.Viewport", {
-				renderTo : 'renderTo',
+			this.mainView = Ext.create("Ext.container.Container", {
+				renderTo : renderTo,
 				layout : 'fit',
 				itemId : 'mainView',
 				autoCreateViewPort : false,

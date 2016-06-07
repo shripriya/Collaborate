@@ -1,4 +1,7 @@
 var renderCollaborate = function(renderTo) {
+
+	var me = this;
+	me.renderTo = renderTo;
 	Ext.Loader.setConfig({
 		enabled : true
 	});
@@ -17,10 +20,9 @@ var renderCollaborate = function(renderTo) {
 
 				var userStore = Ext.create('CollaborateApp.store.UserStore');
 				userStore.add(RESP.userInfo);
-				me.mainView = Ext.create("Ext.container.Viewport", {
-					renderTo : Ext.getBody(),
-					layout : 'fit',
-					autoCreateViewPort : false,
+				Ext.create("Ext.container.Container", {
+					renderTo : renderTo,
+					layout : 'fit',				
 					itemId : 'mainView',
 					items : [ {
 						xtype : 'container',

@@ -1,7 +1,9 @@
 <%@ page session="false"%>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dashboard</title>
 <script type="text/javascript"
 	src="http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.min.js"></script>
@@ -35,7 +37,7 @@
 </script>
 
 </head>
-<body onload="renderCollaborate(collaborateView)">
+<body onload="renderCollaborate('collaborateView')">
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -51,6 +53,19 @@
 		</div>
 	</nav>
 
-	<div class="container-fluid" id="collaborateView"></div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#">Overview</a></li>
+					<li><a href="#">Reports</a></li>
+					<li><a href="#">Analytics</a></li>
+					<li><a href="#">Export</a></li>
+				</ul>
+			</div>
+			<div class="col-md-10 main" id="collaborateView" />
+		</div>
+	</div>
 </body>
 </html>
