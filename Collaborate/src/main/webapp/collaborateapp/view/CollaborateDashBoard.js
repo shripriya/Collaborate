@@ -3,22 +3,13 @@ Ext.define('CollaborateApp.view.CollaborateDashBoard', {
 	xtype : 'dashboard',
 	itemId : 'collaborateDB',
 	layout : {
-		type : 'border'
+		type : 'fit'
 	},
 	initComponent : function() {
+
 		var me = this;
 		Ext.applyIf(me, {
 			items : [ {
-				xtype : 'component',
-				height : 50,
-				region : 'north',
-				html : 'Collaborate',
-				cls : 'app-header'
-			}, {
-				xtype : 'cmenubar',
-				region : 'west',
-				width : 150
-			}, {
 				xtype : 'main',
 				region : 'center'
 			} ]

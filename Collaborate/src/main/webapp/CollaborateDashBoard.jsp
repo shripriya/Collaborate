@@ -19,6 +19,7 @@
 
 <script type="text/javascript">
 	var doLogout = function() {
+
 		CollaborateUtil.doLogout({
 			logout : true
 		}, function(RESP) {
@@ -42,10 +43,24 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
 				<a class="navbar-brand" href="#">Collaborate</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Collaborate Tools</a></li>
+				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Message <img
+							src="resources/images/message.ico" /></a></li>
+					<li><a href="#">Profile <img
+							src="resources/images/profile.ico" /></a></li>
 					<li><a href="#" onclick="doLogout()">Sign Out <span
 							class="glyphicon glyphicon-log-out" aria-hidden="true" /></a></li>
 				</ul>
@@ -54,17 +69,9 @@
 	</nav>
 
 
-	<div class="container-fluid">
+	<div class="container-fluid fill">
 		<div class="row">
-			<div class="col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li class="active"><a href="#">Overview</a></li>
-					<li><a href="#">Reports</a></li>
-					<li><a href="#">Analytics</a></li>
-					<li><a href="#">Export</a></li>
-				</ul>
-			</div>
-			<div class="col-md-10 main" id="collaborateView" />
+			<div class="col-lg-12 col-sm-12 col-md-12 main" id="collaborateView" />
 		</div>
 	</div>
 </body>

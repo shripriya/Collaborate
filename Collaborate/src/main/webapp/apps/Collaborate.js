@@ -1,7 +1,6 @@
 var renderCollaborate = function(renderTo) {
 
 	var me = this;
-	me.renderTo = renderTo;
 	Ext.Loader.setConfig({
 		enabled : true
 	});
@@ -22,14 +21,14 @@ var renderCollaborate = function(renderTo) {
 				userStore.add(RESP.userInfo);
 				Ext.create("Ext.container.Container", {
 					renderTo : renderTo,
-					layout : 'fit',				
+					layout : 'fit',
 					itemId : 'mainView',
+					autoCreateViewPort : false,
 					items : [ {
 						xtype : 'container',
 						itemId : 'mainContainer',
 						layout : {
 							type : 'fit'
-						// pack: 'center'
 						},
 						items : [ {
 							xtype : 'dashboard'

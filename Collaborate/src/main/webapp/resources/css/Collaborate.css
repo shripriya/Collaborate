@@ -7,6 +7,57 @@ and open the template in the editor.
     Created on : Oct 24, 2013, 1:08:35 AM
     Author     : Shyam
 */
+@
+-webkit-viewport {
+	width: device-width;
+}
+
+@
+-moz-viewport {
+	width: device-width;
+}
+
+@
+-ms-viewport {
+	width: device-width;
+}
+
+@
+-o-viewport {
+	width: device-width;
+}
+
+@
+viewport {
+	width: device-width;
+}
+
+.fill {
+	height: 100%;
+}
+
+body {
+	padding-top: 60px;
+}
+
+.sub-header {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
 .app-header {
 	color: #FFFFFF;
 	font-size: 22px;
@@ -41,7 +92,7 @@ and open the template in the editor.
 }
 
 .x-over .x-btn-over .x-btn-default-small-over {
-	 text-decoration: none;
+	text-decoration: none;
 }
 
 .x-fieldset {
